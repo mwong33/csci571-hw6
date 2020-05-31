@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Homework 6</title>
-    <link rel="stylesheet" type="text/css" href="HjfV5lt2C14X.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <section id="title">
@@ -14,18 +14,18 @@
         </h1>
     </section>
     <form>
-        <div>
+        <div class="table">
             <label for="key_words" class="bold">Key Words<span> * </span>:&nbsp;</label>
             <input type="text" id="key_words" name="key_words"><br>
         </div>
-        <div>
+        <div class="table">
             <label class="bold">Price Range:&nbsp;</label>
             <label for="from">&nbsp;From&nbsp;&nbsp;</label>
             <input type="number" id="from" name="from" size="6">
             <label for="to">&nbsp;&nbsp;to&nbsp;</label>
             <input type="number" id="to" name="to" size="6"><br>
         </div>
-        <div>
+        <div class="table">
             <label class="bold">Condition:&nbsp;</label>
             <input type="checkbox" id="new" name="new" value="new">
             <label for="new">New</label>
@@ -38,19 +38,19 @@
             <input type="checkbox" id="acceptable" name="acceptable" value="acceptable">
             <label for="acceptable">Acceptable</label><br>
         </div>
-        <div>
+        <div class="table">
             <label class="bold">Seller:</label>
             <input type="checkbox" id="return_accepted" name="return_accepted" value="return_accepted">
             <label for="return_accepted">Return Accepted</label>
         </div>
-        <div>
+        <div class="table">
             <label class="bold">Shipping:</label>
             <input type="checkbox" id="free" name="free" value="free">
             <label for="free">Free</label>
             <input type="checkbox" id="expedited" name="expedited" value="expedited">
             <label for="expedited">Expedited</label>
         </div>
-        <div>
+        <div class="table">
             <label class="bold" for="sort_by">Sort by:</label>
             <select name="sort_by" id="sort_by">
                 <option value="best_match">Best Match</option>
@@ -59,7 +59,7 @@
                 <option value="price_shipping_lowest_first">Price + Shipping: lowest first</option>
             </select>
         </div>
-        <div>
+        <div class="table bottom">
             <input type="button" value="Clear">
             <input type="button" value="Search">
         </div>
