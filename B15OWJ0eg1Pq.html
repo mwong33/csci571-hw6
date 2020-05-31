@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 6</title>
+    <link rel="stylesheet" type="text/css" href="HjfV5lt2C14X.css">
+</head>
+<body>
+    <section id="title">
+        <h1>
+            <a href="https://www.ebay.com" target="_blank" id="ebay_logo">
+                <img src="images/eBayLogo.png" alt="ebay logo" width="170" height="74"></a>
+            <span>Shopping</span>
+        </h1>
+    </section>
+    <form>
+        <div>
+            <label for="key_words" class="bold">Key Words<span> * </span>:&nbsp;</label>
+            <input type="text" id="key_words" name="key_words"><br>
+        </div>
+        <div>
+            <label class="bold">Price Range:&nbsp;</label>
+            <label for="from">&nbsp;From&nbsp;&nbsp;</label>
+            <input type="number" id="from" name="from" size="6">
+            <label for="to">&nbsp;&nbsp;to&nbsp;</label>
+            <input type="number" id="to" name="to" size="6"><br>
+        </div>
+        <div>
+            <label class="bold">Condition:&nbsp;</label>
+            <input type="checkbox" id="new" name="new" value="new">
+            <label for="new">New</label>
+            <input type="checkbox" id="used" name="used" value="used">
+            <label for="used">Used</label>
+            <input type="checkbox" id="very_good" name="very_good" value="very_good">
+            <label for="very_good">Very Good</label>
+            <input type="checkbox" id="good" name="good" value="good">
+            <label for="good">Good</label>
+            <input type="checkbox" id="acceptable" name="acceptable" value="acceptable">
+            <label for="acceptable">Acceptable</label><br>
+        </div>
+        <div>
+            <label class="bold">Seller:</label>
+            <input type="checkbox" id="return_accepted" name="return_accepted" value="return_accepted">
+            <label for="return_accepted">Return Accepted</label>
+        </div>
+        <div>
+            <label class="bold">Shipping:</label>
+            <input type="checkbox" id="free" name="free" value="free">
+            <label for="free">Free</label>
+            <input type="checkbox" id="expedited" name="expedited" value="expedited">
+            <label for="free">Expedited</label>
+        </div>
+        <div>
+            <label class="bold" for="sort_by">Sort by:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="best_match">Best Match</option>
+                <option value="price_highest_first">Price: highest first</option>
+                <option value="price_shipping_highest_first">Price + Shipping: highest first</option>
+                <option value="price_shipping_lowest_first">Price + Shipping: lowest first</option>
+            </select>
+        </div>
+        <div>
+            <input type="button" value="Clear">
+            <input type="button" value="Search">
+        </div>
+    </form>
+</body>
+</html>

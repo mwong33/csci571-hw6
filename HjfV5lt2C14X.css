@@ -1,0 +1,28 @@
+#title {
+    text-align: center;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1 {
+    text-size-adjust: 15;
+    font-size: 30px;
+}
+
+form {
+    text-align: center;
+}
+
+label.bold {
+    font-weight: bold;
+}
+
+label span {
+    color: red;
+}
+
+option {
+    text-align: center;
+}
