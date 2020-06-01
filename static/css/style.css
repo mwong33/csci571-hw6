@@ -35,10 +35,17 @@ option {
     border-top-style: solid;
     border-right-style: solid;
     border-left-style: solid;
-    border-width: 1px;
+    border-top-width: 1px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+}
+
+.top {
+    border-top-style: solid;
+    border-width: 2px;
 }
 
 .bottom {
     border-bottom-style: solid;
-    border-width: 1px;
+    border-bottom-width: 2px;
 }
