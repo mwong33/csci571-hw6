@@ -28,8 +28,8 @@ option {
 }
 
 .table {
-    margin-left: 400px;
-    margin-right: 400px;
+    margin: 0 auto 0 auto;
+    width: 500px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-top-style: solid;
