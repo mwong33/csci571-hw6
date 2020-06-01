@@ -3,6 +3,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+@app.route('/B15OWJ0eg1Pq.html')
+def root():
+    return app.send_static_file("B15OWJ0eg1Pq.html")
+
 @app.route('/items', methods=['GET'])
 def items():
     
