@@ -1,13 +1,12 @@
 // Form Validation
-const search = document.getElementById("search");
+const form = document.getElementById("form");
 const clear = document.getElementById("clear");
 
 const fromPrice = document.getElementById("from_price");
 const toPrice = document.getElementById("to_price");
 
-search.addEventListener("click", (e) => {
-    
-    if (fromPrice.value > toPrice.value) {
+form.addEventListener("submit", (e) => {
+    if ((fromPrice.value !== "" && toPrice.value !== "") && fromPrice.value > toPrice.value) {
         e.preventDefault();
         alert("Oops! Lower price limit cannot be greater than upper price limit! Please try again.");
     } else if (fromPrice.value < 0 || toPrice.value < 0) {
