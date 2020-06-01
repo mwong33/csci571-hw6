@@ -19,6 +19,7 @@ def items():
         very_good = request.args.get('very_good')
         good = request.args.get('good')
         acceptable = request.args.get('acceptable')
+        sort_order = request.args.get('sort_order')
 
         request_response = {}
 
@@ -33,14 +34,15 @@ def items():
             used=used,
             very_good=very_good,
             good=good,
-            acceptable=acceptable)
+            acceptable=acceptable,
+            sort_order=sort_order)
         
         return jsonify(request_response)
 
 
 def get_find_items_advanced(
     keywords: str, price_from: float, price_to: float, returns_accepted: bool, free_shipping: bool, expedited_shipping: bool, 
-    new: int, used: int, very_good: int, good: int, acceptable: int) -> dict:
+    new: int, used: int, very_good: int, good: int, acceptable: int, sort_order: str) -> dict:
 
     base_url = "https://svcs.eBay.com/services/search/FindingService/v1"
 
@@ -108,6 +110,9 @@ def get_find_items_advanced(
 
         if acceptable:
             params[f"itemFilter({item_filter_count}).value({condition_count})"] = 6000
+
+    if sort_order:
+        params["sortOrder"] = sort_order
         
     response = requests.get(base_url, params=params)
 
