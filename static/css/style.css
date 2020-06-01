@@ -49,3 +49,15 @@ option {
     border-bottom-style: solid;
     border-bottom-width: 2px;
 }
+
+button {
+    background-color: #DFDEE0;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
