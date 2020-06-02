@@ -1,6 +1,8 @@
 import requests
 from flask import Flask, request, jsonify
 
+# App is hosted @ https://mjwong-csci-571-hw6.wl.r.appspot.com
+
 app = Flask(__name__)
 
 @app.route('/B15OWJ0eg1Pq.html')
