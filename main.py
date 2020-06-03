@@ -14,6 +14,7 @@ def items():
     
     if request.method == 'GET':
 
+        # Grab your parameters
         keywords = request.args.get('keywords')
         price_from = request.args.get('price_from')
         price_to = request.args.get('price_to')
@@ -27,8 +28,7 @@ def items():
         acceptable = request.args.get('acceptable')
         sort_by = request.args.get('sort_by')
 
-        request_response = {}
-
+        # Make the request to ebay
         request_response = get_find_items_advanced( 
             keywords=keywords, 
             price_from=price_from, 
@@ -42,8 +42,59 @@ def items():
             good=good,
             acceptable=acceptable,
             sort_by=sort_by)
+
+        # We now need to filter our raw request_response down to 10 entries
+        filtered_response = {}
+        filtered_response["totalResults"] = request_response["findItemsAdvancedResponse"][0]["paginationOutput"][0]["totalEntries"][0]
         
-        return jsonify(request_response)
+        items = request_response["findItemsAdvancedResponse"][0]["searchResult"][0]["item"] #list
+        
+        filtered_item_number = 0
+        item_number = 0
+
+        while filtered_item_number < 10:
+            
+            item = {}
+
+            add = True
+            
+            # Check that the item has an image link
+            if len(items[item_number]["galleryURL"]) > 0 and items[item_number]["galleryURL"][0] != "":
+                item["galleryURL"] = items[item_number]["galleryURL"][0]
+            else:
+                add = False
+            
+            # Check that the item has a title
+            if len(items[item_number]["title"]) > 0 and items[item_number]["title"][0] != "":
+                item["title"] = items[item_number]["title"][0]
+            else:
+                add = False
+
+            # Check that the item has a category
+            if len(items[item_number]["primaryCategory"][0]["categoryName"]) > 0 and items[item_number]["primaryCategory"][0]["categoryName"][0] != "":
+                item["category"] = items[item_number]["primaryCategory"][0]["categoryName"][0]
+            else:
+                add = False
+            
+            # Check that the item has a eBay product link for redirection
+            if len(items[item_number]["viewItemURL"]) > 0 and items[item_number]["viewItemURL"][0] != "":
+                item["viewItemURL"] = items[item_number]["viewItemURL"][0]
+            else:
+                add = False
+
+            # Check that the item has condition for the item
+            
+
+            if add:
+                filtered_response[f"item{filtered_item_number}"] = item
+                filtered_item_number += 1
+
+            item_number += 1
+            
+
+
+            
+        return jsonify(filtered_response)
 
 
 def get_find_items_advanced(

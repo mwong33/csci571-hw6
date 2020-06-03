@@ -16,7 +16,6 @@ form.addEventListener("submit", (e) => {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
         itemsJSON = getItems();
-        console.log(itemsJSON);
         createItemCard();
     }
 })
@@ -75,6 +74,7 @@ function getItems() {
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            console.log(xhttp.responseText);
             return JSON.parse(xhttp.responseText);
         }
 
