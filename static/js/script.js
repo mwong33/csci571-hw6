@@ -14,10 +14,26 @@ form.addEventListener("submit", (e) => {
         alert("Oops! Lower price limit cannot be greater than upper price limit! Please try again.");
     } else if (fromPrice.value < 0 || toPrice.value < 0) {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
+    } else {
+        createItemCard();
     }
-
-    createItemCard();
 })
+
+// Function to execute GET request to our Python Flask server
+function getItems() {
+
+    // Get Form Data
+    var keyWords = document.getElementById("key_words").value;
+    var fromPrice = document.getElementById("from_price").value;
+    var toPrice = document.getElementById("to_price").value;
+    var conditionNew = document.getElementById("new").value;
+    var conditionUsed = document.getElementById("used").value;
+    var conditionVeryGood = document.getElementById("very_good").value;
+    var conditionGood = document.getElementById("good").value;
+    var conditionAcceptable = document.getElementById("acceptable").value;
+
+    
+}
 
 // Function to create an item card
 function createItemCard() {
