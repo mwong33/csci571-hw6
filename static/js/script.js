@@ -2,21 +2,21 @@
 const form = document.getElementById("form");
 const clear = document.getElementById("clear");
 
-const fromPrice = document.getElementById("from_price");
-const toPrice = document.getElementById("to_price");
+const priceFrom = document.getElementById("price_from");
+const priceTo = document.getElementById("price_to");
 
 // Event Listener for 'Search' button
 form.addEventListener("submit", (e) => {
 
     e.preventDefault(); 
 
-    if ((fromPrice.value !== "" && toPrice.value !== "") && fromPrice.value > toPrice.value) {
+    if ((priceFrom.value !== "" && priceTo.value !== "") && priceFrom.value > priceTo.value) {
         alert("Oops! Lower price limit cannot be greater than upper price limit! Please try again.");
-    } else if (fromPrice.value < 0 || toPrice.value < 0) {
+    } else if (priceFrom.value < 0 || priceTo.value < 0) {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
         createItemCard();
-        getItems();
+        //getItems();
     }
 })
 
