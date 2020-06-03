@@ -47,8 +47,8 @@ def items():
 
 
 def get_find_items_advanced(
-    keywords: str, price_from: float, price_to: float, return_accepted: bool, free_shipping: bool, expedited_shipping: bool, 
-    new: bool, used: bool, very_good: bool, good: bool, acceptable: bool, sort_by: str) -> dict:
+    keywords: str, price_from: float, price_to: float, return_accepted: str, free_shipping: str, expedited_shipping: str, 
+    new: str, used: str, very_good: str, good: str, acceptable: str, sort_by: str) -> dict:
 
     base_url = "https://svcs.eBay.com/services/search/FindingService/v1"
 

@@ -15,8 +15,9 @@ form.addEventListener("submit", (e) => {
     } else if (priceFrom.value < 0 || priceTo.value < 0) {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
+        itemsJSON = getItems();
+        console.log(itemsJSON);
         createItemCard();
-        //getItems();
     }
 })
 
@@ -26,57 +27,55 @@ function getItems() {
     // Get Form Data
     var keywords = document.getElementById("key_words").value;
 
-    var request_url = "items?keywords=" + keywords;
+    var request_url = "/items?keywords=" + keywords;
 
-    if (document.getElementById("price_from") != null) {
+    if (document.getElementById("price_from").value != "") {
         request_url += "&price_from=" + document.getElementById("price_from").value;
     }
 
-    if (document.getElementById("price_to") != null) {
+    if (document.getElementById("price_to").value != "") {
         request_url += "&price_to=" + document.getElementById("price_to").value;
     }
 
-    if (document.getElementById("new") != null) {
+    if (document.getElementById("new").checked == true) {
         request_url += "&new=" + document.getElementById("new").value;
     }
 
-    if (document.getElementById("used") != null) {
+    if (document.getElementById("used").checked == true) {
         request_url += "&used=" + document.getElementById("used").value;
     }
 
-    if (document.getElementById("very_good") != null) {
+    if (document.getElementById("very_good").checked == true) {
         request_url += "&very_good=" + document.getElementById("very_good").value;
     }
 
-    if (document.getElementById("good") != null) {
+    if (document.getElementById("good").checked == true) {
         request_url += "&good=" + document.getElementById("good").value;
     }
 
-    if (document.getElementById("acceptable") !=  null) {
+    if (document.getElementById("acceptable").checked == true) {
         request_url += "&acceptable=" + document.getElementById("acceptable").value;
     }
 
-    if (document.getElementById("return_accepted") != null) {
+    if (document.getElementById("return_accepted").checked == true) {
         request_url += "&return_accepted=" + document.getElementById("return_accepted").value;
     }
 
-    if (document.getElementById("free_shipping") != null) {
+    if (document.getElementById("free_shipping").checked == true) {
         request_url += "&free_shipping=" + document.getElementById("free_shipping").value;
     }
 
-    if (document.getElementById("expedited_shipping") != null) {
+    if (document.getElementById("expedited_shipping").checked == true) {
         request_url += "&expedited_shipping=" + document.getElementById("expedited_shipping").value;
     }
-
-    if (document.getElementById("sort_by") != null) {
-        request_url += "&sort_by=" + document.getElementById("sort_by").value;
-    }
-
+    
+    request_url += "&sort_by=" + document.getElementById("sort_by").value;
+    
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(xhttp.responseText); //string
+            return JSON.parse(xhttp.responseText);
         }
 
         if (this.status == 404) {
