@@ -130,7 +130,7 @@ def items():
                 add = False
 
             if add:
-                filtered_response[f"item{filtered_item_number}"] = item
+                filtered_response[f"item_{filtered_item_number}"] = item
                 filtered_item_number += 1
 
             item_number += 1
