@@ -17,7 +17,7 @@ def items():
         keywords = request.args.get('keywords')
         price_from = request.args.get('price_from')
         price_to = request.args.get('price_to')
-        returns_accepted = request.args.get('returns_accepted')
+        return_accepted = request.args.get('return_accepted')
         free_shipping = request.args.get('free_shipping')
         expedited_shipping = request.args.get('expedited_shipping')
         new = request.args.get('new')
@@ -25,7 +25,7 @@ def items():
         very_good = request.args.get('very_good')
         good = request.args.get('good')
         acceptable = request.args.get('acceptable')
-        sort_order = request.args.get('sort_order')
+        sort_by = request.args.get('sort_by')
 
         request_response = {}
 
@@ -33,7 +33,7 @@ def items():
             keywords=keywords, 
             price_from=price_from, 
             price_to=price_to, 
-            returns_accepted=returns_accepted, 
+            return_accepted=return_accepted, 
             free_shipping=free_shipping, 
             expedited_shipping=expedited_shipping, 
             new=new,
@@ -41,14 +41,14 @@ def items():
             very_good=very_good,
             good=good,
             acceptable=acceptable,
-            sort_order=sort_order)
+            sort_by=sort_by)
         
         return jsonify(request_response)
 
 
 def get_find_items_advanced(
-    keywords: str, price_from: float, price_to: float, returns_accepted: bool, free_shipping: bool, expedited_shipping: bool, 
-    new: bool, used: bool, very_good: bool, good: bool, acceptable: bool, sort_order: str) -> dict:
+    keywords: str, price_from: float, price_to: float, return_accepted: bool, free_shipping: bool, expedited_shipping: bool, 
+    new: bool, used: bool, very_good: bool, good: bool, acceptable: bool, sort_by: str) -> dict:
 
     base_url = "https://svcs.eBay.com/services/search/FindingService/v1"
 
@@ -78,7 +78,7 @@ def get_find_items_advanced(
         params[f"itemFilter({item_filter_count}).paramValue"] = "USD"
         item_filter_count += 1
 
-    if returns_accepted:
+    if return_accepted:
         params[f"itemFilter({item_filter_count}).name"] = "ReturnsAcceptedOnly"
         params[f"itemFilter({item_filter_count}).value"] = True
         item_filter_count += 1
@@ -117,8 +117,8 @@ def get_find_items_advanced(
         if acceptable:
             params[f"itemFilter({item_filter_count}).value({condition_count})"] = 6000
 
-    if sort_order:
-        params["sortOrder"] = sort_order
+    if sort_by:
+        params["sortOrder"] = sort_by
         
     response = requests.get(base_url, params=params)
 

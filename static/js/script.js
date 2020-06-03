@@ -16,6 +16,7 @@ form.addEventListener("submit", (e) => {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
         createItemCard();
+        getItems();
     }
 })
 
@@ -23,16 +24,68 @@ form.addEventListener("submit", (e) => {
 function getItems() {
 
     // Get Form Data
-    var keyWords = document.getElementById("key_words").value;
-    var fromPrice = document.getElementById("from_price").value;
-    var toPrice = document.getElementById("to_price").value;
-    var conditionNew = document.getElementById("new").value;
-    var conditionUsed = document.getElementById("used").value;
-    var conditionVeryGood = document.getElementById("very_good").value;
-    var conditionGood = document.getElementById("good").value;
-    var conditionAcceptable = document.getElementById("acceptable").value;
+    var keywords = document.getElementById("key_words").value;
 
-    
+    var request_url = "items?keywords=" + keywords;
+
+    if (document.getElementById("price_from") != null) {
+        request_url += "&price_from=" + document.getElementById("price_from").value;
+    }
+
+    if (document.getElementById("price_to") != null) {
+        request_url += "&price_to=" + document.getElementById("price_to").value;
+    }
+
+    if (document.getElementById("new") != null) {
+        request_url += "&new=" + document.getElementById("new").value;
+    }
+
+    if (document.getElementById("used") != null) {
+        request_url += "&used=" + document.getElementById("used").value;
+    }
+
+    if (document.getElementById("very_good") != null) {
+        request_url += "&very_good=" + document.getElementById("very_good").value;
+    }
+
+    if (document.getElementById("good") != null) {
+        request_url += "&good=" + document.getElementById("good").value;
+    }
+
+    if (document.getElementById("acceptable") !=  null) {
+        request_url += "&acceptable=" + document.getElementById("acceptable").value;
+    }
+
+    if (document.getElementById("return_accepted") != null) {
+        request_url += "&return_accepted=" + document.getElementById("return_accepted").value;
+    }
+
+    if (document.getElementById("free_shipping") != null) {
+        request_url += "&free_shipping=" + document.getElementById("free_shipping").value;
+    }
+
+    if (document.getElementById("expedited_shipping") != null) {
+        request_url += "&expedited_shipping=" + document.getElementById("expedited_shipping").value;
+    }
+
+    if (document.getElementById("sort_by") != null) {
+        request_url += "&sort_by=" + document.getElementById("sort_by").value;
+    }
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(xhttp.responseText); //string
+        }
+
+        if (this.status == 404) {
+            console.log("File or resource not found!");
+        }
+    };
+
+    xhttp.open("GET", "/items?keywords=harry", true);
+    xhttp.send();
 }
 
 // Function to create an item card
