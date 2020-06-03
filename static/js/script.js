@@ -84,7 +84,7 @@ function getItems() {
         }
     };
 
-    xhttp.open("GET", "/items?keywords=harry", true);
+    xhttp.open("GET", request_url, true);
     xhttp.send();
 }
 
