@@ -83,17 +83,58 @@ def items():
                 add = False
 
             # Check that the item has condition for the item
-            
+            if len(items[item_number]["condition"][0]["conditionDisplayName"]) > 0 and items[item_number]["condition"][0]["conditionDisplayName"][0] != "":
+                item["condition"] = items[item_number]["condition"][0]["conditionDisplayName"][0]
+            else:
+                add = False
+
+            # Check that the item is top rated
+            if len(items[item_number]["topRatedListing"]) > 0 and items[item_number]["topRatedListing"][0] == "true":
+                item["topRatedListing"] = "true"
+            else:
+                item["topRatedListing"] = "false"
+
+            # Check that the item has a price + shipping price
+            if len(items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]) > 0 and items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]["__value__"] != "":
+                item["sellingPrice"] = items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]["__value__"]
+            else:
+                add = False
+
+            if len(items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]) > 0 and items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]["__value__"] != "":
+                item["shippingPrice"] = items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]["__value__"]
+            else:
+                add = False
+
+            # Check if seller accepts return
+            if items[item_number]["returnsAccepted"][0] == "true":
+                item["returnsAccepted"] = "true"
+            else:
+                item["returnsAccepted"] = "false"
+
+            # Check if free shipping is available
+            if items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]["__value__"] == "0.0":
+                item["freeShipping"] = "true"
+            else:
+                item["freeShipping"] = "false"
+
+            # Check if expedited shpping is available
+            if items[item_number]["shippingInfo"][0]["expeditedShipping"][0] == "true":
+                item["expeditedShipping"] = "true"
+            else:
+                item["expeditedShipping"] = "false"
+
+            # Check the ships from location
+            if len(items[item_number]["location"]) > 0 and items[item_number]["location"][0] != "":
+                item["shipLocation"] = items[item_number]["location"][0]
+            else:
+                add = False
 
             if add:
                 filtered_response[f"item{filtered_item_number}"] = item
                 filtered_item_number += 1
 
             item_number += 1
-            
-
-
-            
+                     
         return jsonify(filtered_response)
 
 
