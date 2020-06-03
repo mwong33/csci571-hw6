@@ -10,7 +10,7 @@ form.addEventListener("submit", (e) => {
 
     e.preventDefault(); 
 
-    if ((priceFrom.value !== "" && priceTo.value !== "") && priceFrom.value > priceTo.value) {
+    if ((priceFrom.value !== "" && priceTo.value !== "") && parseFloat(priceFrom.value) > parseFloat(priceTo.value)) {
         alert("Oops! Lower price limit cannot be greater than upper price limit! Please try again.");
     } else if (priceFrom.value < 0 || priceTo.value < 0) {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
