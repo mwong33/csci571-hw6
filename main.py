@@ -47,7 +47,10 @@ def items():
         filtered_response = {}
         filtered_response["totalResults"] = request_response["findItemsAdvancedResponse"][0]["paginationOutput"][0]["totalEntries"][0]
         
-        items = request_response["findItemsAdvancedResponse"][0]["searchResult"][0]["item"] #list
+        items = []
+
+        if int(filtered_response["totalResults"]) >= 1:
+            items = request_response["findItemsAdvancedResponse"][0]["searchResult"][0]["item"] #list
         
         filtered_item_number = 0
         item_number = 0
@@ -165,7 +168,7 @@ def get_find_items_advanced(
         "SECURITY-APPNAME": "MatthewW-mjwong-PRD-02eb4905c-0b11768c",
         "RESPONSE-DATA-FORMAT": "JSON", 
         "REST-PAYLOAD": True,
-        "paginationInput.entriesPerPage": 25,  
+        "paginationInput.entriesPerPage": 50,  
         "keywords": keywords
     }
 
