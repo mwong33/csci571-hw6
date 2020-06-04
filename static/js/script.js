@@ -23,7 +23,16 @@ form.addEventListener("submit", (e) => {
                 displayResultCount(parseInt(itemsJSON.totalResults));
 
                 // Loop through each item and create the card for each item
-                
+
+                let counter = 0;
+
+                for (let item in itemsJSON) {
+                    if (counter < 10) {
+                        createItemCard(item);
+                    }
+
+                    counter += 1;
+                }
             });
         };
 
@@ -134,7 +143,7 @@ function displayResultCount(count) {
 };
 
 // Function to create an item card
-function createItemCard() {
+function createItemCard(item) {
 
     let cardDiv = document.createElement("div");
     cardDiv.setAttribute("class", "card");

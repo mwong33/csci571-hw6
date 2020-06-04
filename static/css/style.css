@@ -67,11 +67,11 @@ select {
 }
 
 .card {
-    margin: 0 auto 0 auto;
+    margin: 0 auto 2px auto;
     width: 500px;
     padding-left: 175px;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 5px;
     background-color: #F4F3F4;
 }
@@ -85,11 +85,11 @@ select {
 }
 
 #result_count {
-    margin: 0 auto 0 auto;
+    margin: 0 auto 10px auto;
     text-align: center;
     border-bottom: 2px;
     border-bottom-style: solid;
-    width: 510px;
+    width: 680px;
     border-color: #ccc;
 }
 
