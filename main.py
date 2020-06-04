@@ -65,7 +65,7 @@ def items():
             if add and "galleryURL" in items[item_number].keys():
                 item["galleryURL"] = items[item_number]["galleryURL"][0]
             else:
-                add = False
+                item["galleryURL"] = "default"
             
             # Check that the item has a title
             if add and "title" in items[item_number].keys():

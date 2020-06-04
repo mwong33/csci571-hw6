@@ -96,3 +96,23 @@ select {
 #keyword {
     font-style: italic;
 }
+
+.redirect_icon {
+    vertical-align: top;
+}
+
+.category {
+    font-style: italic;
+}
+
+.title_link {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50px;
+}
+
+.price {
+    font-weight: bold;
+}

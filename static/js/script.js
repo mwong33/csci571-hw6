@@ -23,15 +23,14 @@ form.addEventListener("submit", (e) => {
                 displayResultCount(parseInt(itemsJSON.totalResults));
 
                 // Loop through each item and create the card for each item
-
-                let counter = 0;
+                let itemNumber = 0;
 
                 for (let item in itemsJSON) {
-                    if (counter < 10) {
-                        createItemCard(item);
+                    if (itemNumber < 10) {
+                        createItemCard(itemsJSON[item], itemNumber);
                     }
 
-                    counter += 1;
+                    itemNumber += 1;
                 }
             });
         };
@@ -113,7 +112,7 @@ function getItems() {
 
 // Function to display the result count
 function displayResultCount(count) {
-    // Remove the curren result count if present
+    // Remove the current result count if present
     if(document.getElementById("result_count") != null) {
         let removeResultCountDiv = document.getElementById("result_count");
         document.body.removeChild(removeResultCountDiv);
@@ -143,22 +142,69 @@ function displayResultCount(count) {
 };
 
 // Function to create an item card
-function createItemCard(item) {
+function createItemCard(item, itemNumber) {
 
     let cardDiv = document.createElement("div");
     cardDiv.setAttribute("class", "card");
+    cardDiv.setAttribute("id", "item_" + itemNumber);
 
-    let title = document.createElement("p");
-    title.innerHTML = "Title";
-    cardDiv.appendChild(title);
+    // Display the Title
+    let titleLink = document.createElement("a");
+    titleLink.setAttribute("href", item.viewItemURL);
+    titleLink.setAttribute("target", "_blank");
+    titleLink.setAttribute("class", "title_link");
+    titleLink.innerHTML = item.title;
+
+    cardDiv.appendChild(titleLink);
+
+    // Display the Category
+    let category = document.createElement("p");
+
+    let categoryRedirect = document.createElement("a");
+    categoryRedirect.setAttribute("href", item.viewItemURL);
+    categoryRedirect.setAttribute("target", "_blank");
+
+    let redirectIcon = document.createElement("img");
+    redirectIcon.setAttribute("src", "static/img/redirect.png");
+    redirectIcon.setAttribute("alt", "redirect icon");
+    redirectIcon.setAttribute("width", "15");
+    redirectIcon.setAttribute("height", "15");
+    redirectIcon.setAttribute("class", "redirect_icon");
+
+    categoryRedirect.appendChild(redirectIcon);
+
+    category.innerHTML = "Category: " + "<span class='category'>" + item.category + "&nbsp;" + "</span>";
+
+    category.appendChild(categoryRedirect);
+
+    cardDiv.appendChild(category);
     
+    // Display the Condition
     let condition = document.createElement("p");
-    condition.innerHTML = "Condition:";
+    condition.innerHTML = "Condition: " + item.condition + "&nbsp;";
+
+    if (item.topRatedListing == "true") {
+        let topRatedImage = document.createElement("img");
+        topRatedImage.setAttribute("src", "static/img/topRatedImage.png");
+        topRatedImage.setAttribute("alt", "top rated image");
+        topRatedImage.setAttribute("width", "20");
+        topRatedImage.setAttribute("height", "30");
+        condition.appendChild(topRatedImage);
+    }
+
     cardDiv.appendChild(condition);
 
+    // Display the Price
     let price = document.createElement("p");
-    price.innerHTML = "Price:";
+    price.setAttribute("class", "price");
+    price.innerHTML = "Price: $" + item.sellingPrice;
+    
+    if (parseFloat(item.shippingPrice) > 0.0) {
+        price.innerHTML += " ( + $" + item.shippingPrice + " for shipping)";
+    }
+
     cardDiv.appendChild(price);
 
+    // Add the card to the page
     document.body.appendChild(cardDiv);
 };
