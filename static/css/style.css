@@ -80,6 +80,19 @@ select {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-#result_count {
+#result_count_empty {
     text-align: center;
+}
+
+#result_count {
+    margin: 0 auto 0 auto;
+    text-align: center;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+    width: 510px;
+    border-color: #ccc;
+}
+
+#keyword {
+    font-style: italic;
 }

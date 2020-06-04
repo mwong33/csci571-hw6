@@ -18,13 +18,16 @@ form.addEventListener("submit", (e) => {
         const items = () => {
             getItems().then(itemsJSON => {
                 console.log(itemsJSON);
-                displayResultCount(parseInt(itemsJSON["totalResults"]));
+                
+                // Display the result count
+                displayResultCount(parseInt(itemsJSON.totalResults));
+
+                // Loop through each item and create the card for each item
+                
             });
         };
 
         items();
-        //displayResultCount(parseInt(itemsJSON["totalResults"]));
-        //createItemCard();
     }
 });
 
@@ -110,7 +113,7 @@ function displayResultCount(count) {
     // Display the current result count
     if (count == 0) {
         let resultCountDiv = document.createElement("div");
-        resultCountDiv.setAttribute("id", "result_count");
+        resultCountDiv.setAttribute("id", "result_count_empty");
 
         let resultCount = document.createElement("h2");
         resultCount.innerHTML = "No Results found"
@@ -122,7 +125,7 @@ function displayResultCount(count) {
         resultCountDiv.setAttribute("id", "result_count");
 
         let resultCount = document.createElement("h2");
-        resultCount.innerHTML = count + " Results found for " + document.getElementById("key_words").value;
+        resultCount.innerHTML = count + " Results found for " + "<span id='keyword'>" + document.getElementById("key_words").value + "</span>";
         resultCountDiv.appendChild(resultCount);
         
         document.body.appendChild(resultCountDiv);
