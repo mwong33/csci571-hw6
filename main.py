@@ -52,55 +52,55 @@ def items():
         filtered_item_number = 0
         item_number = 0
 
-        while filtered_item_number < 10:
+        while filtered_item_number < 10 and item_number < len(items):
             
             item = {}
 
             add = True
             
             # Check that the item has an image link
-            if len(items[item_number]["galleryURL"]) > 0 and items[item_number]["galleryURL"][0] != "":
+            if "galleryURL" in items[item_number].keys():
                 item["galleryURL"] = items[item_number]["galleryURL"][0]
             else:
                 add = False
             
             # Check that the item has a title
-            if len(items[item_number]["title"]) > 0 and items[item_number]["title"][0] != "":
+            if "title" in items[item_number].keys():
                 item["title"] = items[item_number]["title"][0]
             else:
                 add = False
 
             # Check that the item has a category
-            if len(items[item_number]["primaryCategory"][0]["categoryName"]) > 0 and items[item_number]["primaryCategory"][0]["categoryName"][0] != "":
+            if "primaryCategory" in items[item_number].keys():
                 item["category"] = items[item_number]["primaryCategory"][0]["categoryName"][0]
             else:
                 add = False
             
             # Check that the item has a eBay product link for redirection
-            if len(items[item_number]["viewItemURL"]) > 0 and items[item_number]["viewItemURL"][0] != "":
+            if "viewItemURL" in items[item_number].keys():
                 item["viewItemURL"] = items[item_number]["viewItemURL"][0]
             else:
                 add = False
 
             # Check that the item has condition for the item
-            if len(items[item_number]["condition"][0]["conditionDisplayName"]) > 0 and items[item_number]["condition"][0]["conditionDisplayName"][0] != "":
+            if "condition" in items[item_number].keys():
                 item["condition"] = items[item_number]["condition"][0]["conditionDisplayName"][0]
             else:
                 add = False
 
             # Check that the item is top rated
-            if len(items[item_number]["topRatedListing"]) > 0 and items[item_number]["topRatedListing"][0] == "true":
+            if items[item_number]["topRatedListing"][0] == "true": 
                 item["topRatedListing"] = "true"
             else:
                 item["topRatedListing"] = "false"
 
             # Check that the item has a price + shipping price
-            if len(items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]) > 0 and items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]["__value__"] != "":
+            if "sellingStatus" in items[item_number].keys():
                 item["sellingPrice"] = items[item_number]["sellingStatus"][0]["convertedCurrentPrice"][0]["__value__"]
             else:
                 add = False
 
-            if len(items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]) > 0 and items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]["__value__"] != "":
+            if "shippingInfo" in items[item_number].keys():
                 item["shippingPrice"] = items[item_number]["shippingInfo"][0]["shippingServiceCost"][0]["__value__"]
             else:
                 add = False
