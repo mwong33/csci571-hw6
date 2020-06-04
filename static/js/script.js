@@ -15,8 +15,9 @@ form.addEventListener("submit", (e) => {
     } else if (priceFrom.value < 0 || priceTo.value < 0) {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
-        itemsJSON = getItems();
-        createItemCard();
+        getItems();
+        //displayResultCount(parseInt(itemsJSON["totalResults"]));
+        //createItemCard();
     }
 })
 
@@ -24,9 +25,9 @@ form.addEventListener("submit", (e) => {
 function getItems() {
 
     // Get Form Data
-    var keywords = document.getElementById("key_words").value;
+    let keywords = document.getElementById("key_words").value;
 
-    var request_url = "/items?keywords=" + keywords;
+    let request_url = "/items?keywords=" + keywords;
 
     if (document.getElementById("price_from").value != "") {
         request_url += "&price_from=" + document.getElementById("price_from").value;
@@ -70,12 +71,12 @@ function getItems() {
     
     request_url += "&sort_by=" + document.getElementById("sort_by").value;
     
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(xhttp.responseText);
-            return JSON.parse(xhttp.responseText);
+            const data = JSON.parse(xhttp.responseText);
+            console.log(data);
         }
 
         if (this.status == 404) {
@@ -87,23 +88,39 @@ function getItems() {
     xhttp.send();
 }
 
+// Function to display the result count
+function displayResultCount(count) {
+
+    if (count == 0) {
+        let resultCountDiv = document.createElement("div");
+        resultCountDiv.setAttribute("class", "result_count");
+
+        let resultCount = document.createElement("h2");
+        resultCount.innerHTML = "No Results found"
+        resultDiv.appendChild(resultCount);
+
+        document.body.appendChild(resultDiv);
+    }
+
+}
+
 // Function to create an item card
 function createItemCard() {
 
-    var cardDiv = document.createElement("div");
+    let cardDiv = document.createElement("div");
     cardDiv.setAttribute("class", "card");
-    document.body.appendChild(cardDiv);
 
-    var title = document.createElement("p");
+    let title = document.createElement("p");
     title.innerHTML = "Title";
     cardDiv.appendChild(title);
     
-    var condition = document.createElement("p");
+    let condition = document.createElement("p");
     condition.innerHTML = "Condition:";
     cardDiv.appendChild(condition);
 
-    var price = document.createElement("p");
+    let price = document.createElement("p");
     price.innerHTML = "Price:";
     cardDiv.appendChild(price);
 
+    document.body.appendChild(cardDiv);
 }
