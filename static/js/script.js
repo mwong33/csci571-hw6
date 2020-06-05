@@ -148,6 +148,14 @@ function createItemCard(item, itemNumber) {
     cardDiv.setAttribute("class", "card");
     cardDiv.setAttribute("id", "item_" + itemNumber);
 
+    let imageDiv = document.createElement("div");
+    imageDiv.setAttribute("class", "image_div");
+    let contentDiv = document.createElement("div");
+    contentDiv.setAttribute("class", "content_div");
+
+    cardDiv.appendChild(imageDiv);
+    cardDiv.appendChild(contentDiv);
+
     // Display the image
     let itemImage = document.createElement("img");
 
@@ -161,7 +169,7 @@ function createItemCard(item, itemNumber) {
     itemImage.setAttribute("alt", "item image");
     itemImage.setAttribute("class", "item_image")
 
-    cardDiv.appendChild(itemImage);
+    imageDiv.appendChild(itemImage);
 
     // Display the Title
     let titleLink = document.createElement("a");
@@ -170,7 +178,7 @@ function createItemCard(item, itemNumber) {
     titleLink.setAttribute("class", "title_link");
     titleLink.innerHTML = item.title;
 
-    cardDiv.appendChild(titleLink);
+    contentDiv.appendChild(titleLink);
 
     // Display the Category
     let category = document.createElement("p");
@@ -192,7 +200,7 @@ function createItemCard(item, itemNumber) {
 
     category.appendChild(categoryRedirect);
 
-    cardDiv.appendChild(category);
+    contentDiv.appendChild(category);
     
     // Display the Condition
     let condition = document.createElement("p");
@@ -207,7 +215,7 @@ function createItemCard(item, itemNumber) {
         condition.appendChild(topRatedImage);
     }
 
-    cardDiv.appendChild(condition);
+    contentDiv.appendChild(condition);
 
     // Display the Price
     let price = document.createElement("p");
@@ -218,7 +226,7 @@ function createItemCard(item, itemNumber) {
         price.innerHTML += " ( + $" + item.shippingPrice + " for shipping)";
     }
 
-    cardDiv.appendChild(price);
+    contentDiv.appendChild(price);
 
     // Add the card to the page
     document.body.appendChild(cardDiv);
