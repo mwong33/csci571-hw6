@@ -130,3 +130,7 @@ select {
 .detail {
     display: none;
 }
+
+.unbold {
+    font-weight: normal;
+}

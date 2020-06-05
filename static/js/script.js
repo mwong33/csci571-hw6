@@ -32,11 +32,29 @@ form.addEventListener("submit", (e) => {
 
                     itemNumber += 1;
                 }
+
+                const cards = document.getElementsByClassName("card");
+
+                let displayDetails = () => {
+                    var details = document.getElementsByClassName("detail");
+                    for (let i in details) {
+                        if (details[i].tagName == "SPAN") {
+                            details[i].style.display = "inline";
+                        } else {
+                            details[i].style.display = "block";
+                        }
+                    };
+                };
+                
+                for (let i in cards) {
+                    cards[i].addEventListener("click", displayDetails, false);
+                }
+
             });
         };
 
         items();
-    }
+    };
 });
 
 // Function to execute GET request to our Python Flask server
@@ -50,43 +68,43 @@ function getItems() {
 
         if (document.getElementById("price_from").value != "") {
             request_url += "&price_from=" + document.getElementById("price_from").value;
-        }
+        };
 
         if (document.getElementById("price_to").value != "") {
             request_url += "&price_to=" + document.getElementById("price_to").value;
-        }
+        };
 
         if (document.getElementById("new").checked == true) {
             request_url += "&new=" + document.getElementById("new").value;
-        }
+        };
 
         if (document.getElementById("used").checked == true) {
             request_url += "&used=" + document.getElementById("used").value;
-        }
+        };
 
         if (document.getElementById("very_good").checked == true) {
             request_url += "&very_good=" + document.getElementById("very_good").value;
-        }
+        };
 
         if (document.getElementById("good").checked == true) {
             request_url += "&good=" + document.getElementById("good").value;
-        }
+        };
 
         if (document.getElementById("acceptable").checked == true) {
             request_url += "&acceptable=" + document.getElementById("acceptable").value;
-        }
+        };
 
         if (document.getElementById("return_accepted").checked == true) {
             request_url += "&return_accepted=" + document.getElementById("return_accepted").value;
-        }
+        };
 
         if (document.getElementById("free_shipping").checked == true) {
             request_url += "&free_shipping=" + document.getElementById("free_shipping").value;
-        }
+        };
 
         if (document.getElementById("expedited_shipping").checked == true) {
             request_url += "&expedited_shipping=" + document.getElementById("expedited_shipping").value;
-        }
+        };
         
         request_url += "&sort_by=" + document.getElementById("sort_by").value;
         
@@ -96,11 +114,11 @@ function getItems() {
         xhttp.onload = () => {
             if (xhttp.status == 200) {
                 resolve(xhttp.response);
-            }
+            };
 
             if (xhttp.status >= 400) {
                 reject(xhttp.response);
-            }
+            };
         };
 
         xhttp.open("GET", request_url, true);
@@ -116,7 +134,7 @@ function displayResultCount(count) {
     if(document.getElementById("result_count") != null) {
         let removeResultCountDiv = document.getElementById("result_count");
         document.body.removeChild(removeResultCountDiv);
-    }
+    };
 
     // Display the current result count
     if (count == 0) {
@@ -137,7 +155,7 @@ function displayResultCount(count) {
         resultCountDiv.appendChild(resultCount);
         
         document.body.appendChild(resultCountDiv);
-    }
+    };
 
 };
 
@@ -164,7 +182,7 @@ function createItemCard(item, itemNumber) {
     if (item.galleryURL == "static/img/ebay_default.jpg") {
         itemImage.setAttribute("width", "160");
         itemImage.setAttribute("height", "100");
-    }
+    };
 
     itemImage.setAttribute("alt", "item image");
     itemImage.setAttribute("class", "item_image")
@@ -213,7 +231,7 @@ function createItemCard(item, itemNumber) {
         topRatedImage.setAttribute("width", "20");
         topRatedImage.setAttribute("height", "30");
         condition.appendChild(topRatedImage);
-    }
+    };
 
     contentDiv.appendChild(condition);
 
@@ -225,7 +243,7 @@ function createItemCard(item, itemNumber) {
         returns.innerHTML = "Seller <span class='bold'>accepts</span> returns";
     } else {
         returns.innerHTML = "Seller <span class='bold'>does not accept returns</span>";
-    }
+    };
 
     contentDiv.appendChild(returns);
 
@@ -237,11 +255,11 @@ function createItemCard(item, itemNumber) {
         shippingDetails.innerHTML = "Free Shipping";
     } else {
         shippingDetails.innerHTML = "No Free Shipping";
-    }
+    };
 
     if (item.expeditedShipping == "true") {
         shippingDetails.innerHTML += " -- Expedited Shipping available";
-    }
+    };
 
     contentDiv.appendChild(shippingDetails);
 
@@ -252,10 +270,10 @@ function createItemCard(item, itemNumber) {
     
     if (parseFloat(item.shippingPrice) > 0.0) {
         price.innerHTML += " ( + $" + item.shippingPrice + " for shipping)";
-    }
+    };
 
     // Add the location (Starts Hidden)
-    price.innerHTML += " <span class='italic detail'>" + item.shipLocation + "</span>";
+    price.innerHTML += " <span class='italic detail unbold inline'>" + item.shipLocation + "</span>";
 
     contentDiv.appendChild(price);
 
