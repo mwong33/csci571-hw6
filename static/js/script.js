@@ -148,6 +148,21 @@ function createItemCard(item, itemNumber) {
     cardDiv.setAttribute("class", "card");
     cardDiv.setAttribute("id", "item_" + itemNumber);
 
+    // Display the image
+    let itemImage = document.createElement("img");
+
+    itemImage.setAttribute("src", item.galleryURL);
+    
+    if (item.galleryURL == "static/img/ebay_default.jpg") {
+        itemImage.setAttribute("width", "160");
+        itemImage.setAttribute("height", "100");
+    }
+
+    itemImage.setAttribute("alt", "item image");
+    itemImage.setAttribute("class", "item_image")
+
+    cardDiv.appendChild(itemImage);
+
     // Display the Title
     let titleLink = document.createElement("a");
     titleLink.setAttribute("href", item.viewItemURL);

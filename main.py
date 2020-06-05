@@ -63,9 +63,12 @@ def items():
             
             # Check that the item has an image link
             if add and "galleryURL" in items[item_number].keys():
-                item["galleryURL"] = items[item_number]["galleryURL"][0]
+                if items[item_number]["galleryURL"][0] == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg":
+                    item["galleryURL"] = "static/img/ebay_default.jpg"
+                else:
+                    item["galleryURL"] = items[item_number]["galleryURL"][0]
             else:
-                item["galleryURL"] = "default"
+                add = False
             
             # Check that the item has a title
             if add and "title" in items[item_number].keys():
