@@ -25,13 +25,18 @@ form.addEventListener("submit", (e) => {
                     // Loop through each item and create the card for each item
                     let itemNumber = 0;
 
+                    let cardHolder = document.createElement("div");
+                    cardHolder.setAttribute("id", "card_holder");
+
                     for (let item in itemsJSON) {
                         if (itemNumber < 10) {
-                            createItemCard(itemsJSON[item], itemNumber);
+                            createItemCard(cardHolder, itemsJSON[item], itemNumber);
                         }
 
                         itemNumber += 1;
                     }
+
+                    document.body.appendChild(cardHolder);
 
                     // Create Event Listener for each Card
                     const cardArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
@@ -60,6 +65,19 @@ form.addEventListener("submit", (e) => {
                 };
             });
         };
+
+        // Before we get our items, check to clear out any initial search results (result_count, result_count_empty, and card_holder)
+        if (document.getElementById("result_count_empty") != null) {
+            document.body.removeChild(document.getElementById("result_count_empty"));
+        }
+
+        if (document.getElementById("result_count") != null) {
+            document.body.removeChild(document.getElementById("result_count"));
+        }
+
+        if (document.getElementById("card_holder") != null) {
+            document.body.removeChild(document.getElementById("card_holder"));
+        }
 
         items();
     };
@@ -168,7 +186,7 @@ function displayResultCount(count) {
 };
 
 // Function to create an item card
-function createItemCard(item, itemNumber) {
+function createItemCard(cardHolder, item, itemNumber) {
 
     let cardDiv = document.createElement("div");
     cardDiv.setAttribute("class", "card");
@@ -299,5 +317,5 @@ function createItemCard(item, itemNumber) {
     contentDiv.appendChild(price);
 
     // Add the card to the page
-    document.body.appendChild(cardDiv);
+    cardHolder.appendChild(cardDiv);
 };
