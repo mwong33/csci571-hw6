@@ -38,28 +38,25 @@ form.addEventListener("submit", (e) => {
 
                     cardArray.forEach((card) => {
                         card.addEventListener('click', () => {
-                            let details = Array.prototype.slice.call(card.getElementsByClassName("hidden"));
+                            let details = Array.prototype.slice.call(card.getElementsByClassName("extra_detail"));
 
                             for (let  i in details) {
-                                if (details[i].tagName == "SPAN") {
-                                    details[i].style.display = "inline";
-                                } else if (details[i].tagName == "BUTTON") {
-                                    details[i].style.display = "inline-block";
-                                } else {
-                                    details[i].style.display = "block";
-                                };
+                                details[i].classList.remove('hidden');
                             };
                         });
                     });
 
                     // Create Event Listener for the Close Buttons
-                    const closeButtonArray = Array.prototype.slice.call(document.querySelectorAll('.close_button'));
-
-                    closeButtonArray.forEach((closeButton) => {
-                        closeButton.addEventListener('click', () => {
-
+                    cardArray.forEach((card) => {
+                        document.getElementById(card.id + "_close_button").addEventListener('click', () => {
+                            let details = Array.prototype.slice.call(card.getElementsByClassName("extra_detail"));
+                            for (let  i in details) {
+                                console.log(details[i].classList);
+                                details[i].classList.add('hidden');
+                            };
                         });
                     });
+
                 };
             });
         };
@@ -206,7 +203,8 @@ function createItemCard(item, itemNumber) {
 
     let closeButton = document.createElement("button");
     closeButton.setAttribute("type", "button");
-    closeButton.setAttribute("class", "close_button hidden");
+    closeButton.setAttribute("class", "close_button extra_detail hidden");
+    closeButton.setAttribute("id", "item_" + itemNumber + "_close_button");
     closeButton.innerHTML = "&times;"
 
     closeButtonDiv.appendChild(closeButton);
@@ -260,7 +258,7 @@ function createItemCard(item, itemNumber) {
 
     // Create the returns field (Starts Hidden)
     let returns = document.createElement("p");
-    returns.setAttribute("class", "hidden");
+    returns.setAttribute("class", "extra_detail hidden");
     
     if (item.returnsAccepted == "true") {
         returns.innerHTML = "Seller <span class='bold'>accepts</span> returns";
@@ -272,7 +270,7 @@ function createItemCard(item, itemNumber) {
 
     // Create the shipping details (Starts Hidden)
     let shippingDetails = document.createElement("p");
-    shippingDetails.setAttribute("class", "hidden");
+    shippingDetails.setAttribute("class", "extra_detail hidden");
 
     if (item.freeShipping == "true") {
         shippingDetails.innerHTML = "Free Shipping";
@@ -296,7 +294,7 @@ function createItemCard(item, itemNumber) {
     };
 
     // Add the location (Starts Hidden)
-    price.innerHTML += " <span class='italic hidden unbold inline'>" + item.shipLocation + "</span>";
+    price.innerHTML += " <span class='italic extra_detail hidden unbold inline'>" + item.shipLocation + "</span>";
 
     contentDiv.appendChild(price);
 
