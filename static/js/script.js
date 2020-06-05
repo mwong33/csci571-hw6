@@ -133,7 +133,7 @@ function displayResultCount(count) {
         resultCountDiv.setAttribute("id", "result_count");
 
         let resultCount = document.createElement("h2");
-        resultCount.innerHTML = count + " Results found for " + "<span id='keyword'>" + document.getElementById("key_words").value + "</span>";
+        resultCount.innerHTML = count + " Results found for " + "<span class='italic'>" + document.getElementById("key_words").value + "</span>";
         resultCountDiv.appendChild(resultCount);
         
         document.body.appendChild(resultCountDiv);
@@ -175,7 +175,7 @@ function createItemCard(item, itemNumber) {
     let titleLink = document.createElement("a");
     titleLink.setAttribute("href", item.viewItemURL);
     titleLink.setAttribute("target", "_blank");
-    titleLink.setAttribute("class", "title_link");
+    titleLink.setAttribute("class", "bold truncate");
     titleLink.innerHTML = item.title;
 
     contentDiv.appendChild(titleLink);
@@ -196,7 +196,7 @@ function createItemCard(item, itemNumber) {
 
     categoryRedirect.appendChild(redirectIcon);
 
-    category.innerHTML = "Category: " + "<span class='category'>" + item.category + "&nbsp;" + "</span>";
+    category.innerHTML = "Category: " + "<span class='italic'>" + item.category + "&nbsp;" + "</span>";
 
     category.appendChild(categoryRedirect);
 
@@ -217,14 +217,45 @@ function createItemCard(item, itemNumber) {
 
     contentDiv.appendChild(condition);
 
+    // Create the returns field (Starts Hidden)
+    let returns = document.createElement("p");
+    returns.setAttribute("class", "detail");
+    
+    if (item.returnsAccepted == "true") {
+        returns.innerHTML = "Seller <span class='bold'>accepts</span> returns";
+    } else {
+        returns.innerHTML = "Seller <span class='bold'>does not accept returns</span>";
+    }
+
+    contentDiv.appendChild(returns);
+
+    // Create the shipping details (Starts Hidden)
+    let shippingDetails = document.createElement("p");
+    shippingDetails.setAttribute("class", "detail");
+
+    if (item.freeShipping == "true") {
+        shippingDetails.innerHTML = "Free Shipping";
+    } else {
+        shippingDetails.innerHTML = "No Free Shipping";
+    }
+
+    if (item.expeditedShipping == "true") {
+        shippingDetails.innerHTML += " -- Expedited Shipping available";
+    }
+
+    contentDiv.appendChild(shippingDetails);
+
     // Display the Price
     let price = document.createElement("p");
-    price.setAttribute("class", "price");
+    price.setAttribute("class", "bold");
     price.innerHTML = "Price: $" + item.sellingPrice;
     
     if (parseFloat(item.shippingPrice) > 0.0) {
         price.innerHTML += " ( + $" + item.shippingPrice + " for shipping)";
     }
+
+    // Add the location (Starts Hidden)
+    price.innerHTML += " <span class='italic detail'>" + item.shipLocation + "</span>";
 
     contentDiv.appendChild(price);
 

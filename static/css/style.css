@@ -15,7 +15,7 @@ form {
     text-align: center;
 }
 
-label.bold {
+.bold {
     font-weight: bold;
 }
 
@@ -67,16 +67,17 @@ select {
 }
 
 .card {
-    margin: 0 auto 2px auto;
+    margin: 0 auto 4px auto;
     width: 650px;
     padding-top: 20px; 
-    padding-left: 40px;
+    padding-left: 60px;
     padding-bottom: 15px;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
     background-color: #F4F3F4;
     display: flex;
+    align-items: center;
 }
 
 .card:hover {
@@ -96,24 +97,12 @@ select {
     border-color: #ccc;
 }
 
-#keyword {
+.italic {
     font-style: italic;
 }
 
 .redirect_icon {
     vertical-align: top;
-}
-
-.category {
-    font-style: italic;
-}
-
-.title_link {
-    font-weight: bold;
-}
-
-.price {
-    font-weight: bold;
 }
 
 .item_image {
@@ -125,4 +114,19 @@ select {
 
 .item_image:hover {
     transform: scale(1.75);
+}
+
+.image_div {
+    width: 200px;
+}
+
+.content_div {
+    width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.detail {
+    display: none;
 }
