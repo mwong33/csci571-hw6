@@ -16,45 +16,51 @@ form.addEventListener("submit", (e) => {
         alert("Price Range values cannot be negative! Please try a value greater than or equal to 0.0");
     } else {
         const items = () => {
-            getItems().then(itemsJSON => {
-                console.log(itemsJSON);
-                
+            getItems().then(itemsJSON => {                
                 // Display the result count
                 displayResultCount(parseInt(itemsJSON.totalResults));
 
-                // Loop through each item and create the card for each item
-                let itemNumber = 0;
+                if (parseInt(itemsJSON.totalResults) != 0) {
 
-                for (let item in itemsJSON) {
-                    if (itemNumber < 10) {
-                        createItemCard(itemsJSON[item], itemNumber);
+                    // Loop through each item and create the card for each item
+                    let itemNumber = 0;
+
+                    for (let item in itemsJSON) {
+                        if (itemNumber < 10) {
+                            createItemCard(itemsJSON[item], itemNumber);
+                        }
+
+                        itemNumber += 1;
                     }
 
-                    itemNumber += 1;
-                }
+                    // Create Event Listener for each Card
+                    const cardArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
-                const cardArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
+                    cardArray.forEach((card) => {
+                        card.addEventListener('click', () => {
+                            let details = Array.prototype.slice.call(card.getElementsByClassName("hidden"));
 
-                cardArray.forEach((card) => {
-                    card.addEventListener('click', () => {
-                        let details = Array.prototype.slice.call(card.getElementsByClassName("hidden"));
-                        let counter = 9;
-                        for (let  i in details) {
-                            console.log(details[i]);
-                            console.log(counter);
-                            if (details[i].tagName == "SPAN") {
-                                details[i].style.display = "inline";
-                            } else {
-                                details[i].style.display = "block";
+                            for (let  i in details) {
+                                if (details[i].tagName == "SPAN") {
+                                    details[i].style.display = "inline";
+                                } else if (details[i].tagName == "BUTTON") {
+                                    details[i].style.display = "inline-block";
+                                } else {
+                                    details[i].style.display = "block";
+                                };
                             };
-                        };
-
-                        // 
-
-
+                        });
                     });
-                });
-                
+
+                    // Create Event Listener for the Close Buttons
+                    const closeButtonArray = Array.prototype.slice.call(document.querySelectorAll('.close_button'));
+
+                    closeButtonArray.forEach((closeButton) => {
+                        closeButton.addEventListener('click', () => {
+
+                        });
+                    });
+                };
             });
         };
 
@@ -193,6 +199,18 @@ function createItemCard(item, itemNumber) {
     itemImage.setAttribute("class", "item_image")
 
     imageDiv.appendChild(itemImage);
+
+    // Create the close button and its container(Starts Hidden)
+    let closeButtonDiv = document.createElement("div");
+    closeButtonDiv.setAttribute("class", "align_right");
+
+    let closeButton = document.createElement("button");
+    closeButton.setAttribute("type", "button");
+    closeButton.setAttribute("class", "close_button hidden");
+    closeButton.innerHTML = "&times;"
+
+    closeButtonDiv.appendChild(closeButton);
+    contentDiv.appendChild(closeButtonDiv);
 
     // Display the Title
     let titleLink = document.createElement("a");

@@ -50,14 +50,14 @@ option {
     border-bottom-width: 2px;
 }
 
-button {
+.grey_button {
     background-color: #DFDEE0;
     border: none;
     padding: 8px 10px;
     border-radius: 5px;
 }
 
-button:hover {
+.green_hover:hover {
     background-color: #4CAF50;
     color: white;
 }
@@ -135,6 +135,15 @@ select {
     font-weight: normal;
 }
 
-.special {
+.align_right {
     text-align: right;
+    padding-left: 100px;
+}
+
+.close_button {
+    border: none;
+    color: red;
+    font-size: 35px;
+    background-color: #F4F3F4;
+    align-content: right;
 }
