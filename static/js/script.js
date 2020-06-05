@@ -83,6 +83,24 @@ form.addEventListener("submit", (e) => {
     };
 });
 
+// Event listener for 'Clear' button
+clear.addEventListener("click", () => {
+    
+    // Clear Button must also clear out the result area if present
+    if (document.getElementById("result_count_empty") != null) {
+        document.body.removeChild(document.getElementById("result_count_empty"));
+    }
+
+    if (document.getElementById("result_count") != null) {
+        document.body.removeChild(document.getElementById("result_count"));
+    }
+
+    if (document.getElementById("card_holder") != null) {
+        document.body.removeChild(document.getElementById("card_holder"));
+    }
+
+})
+
 // Function to execute GET request to our Python Flask server
 function getItems() {
 
