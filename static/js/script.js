@@ -29,8 +29,10 @@ form.addEventListener("submit", (e) => {
                     cardHolder.setAttribute("id", "card_holder");
 
                     for (let item in itemsJSON) {
-                        if (itemNumber < 10) {
-                            createItemCard(cardHolder, itemsJSON[item], itemNumber);
+                        if (itemNumber < 3) {
+                            createItemCard(cardHolder, itemsJSON[item], itemNumber, false);
+                        } else {
+                            createItemCard(cardHolder, itemsJSON[item], itemNumber, true);
                         }
 
                         itemNumber += 1;
@@ -204,11 +206,17 @@ function displayResultCount(count) {
 };
 
 // Function to create an item card
-function createItemCard(cardHolder, item, itemNumber) {
+function createItemCard(cardHolder, item, itemNumber, hidden_card) {
 
     let cardDiv = document.createElement("div");
-    cardDiv.setAttribute("class", "card");
     cardDiv.setAttribute("id", "item_" + itemNumber);
+
+    // Hide the card initially if hidden_card is true
+    if (hidden_card) {
+        cardDiv.setAttribute("class", "card hidden");
+    } else {
+        cardDiv.setAttribute("class", "card");
+    }
 
     let imageDiv = document.createElement("div");
     imageDiv.setAttribute("class", "image_div");
