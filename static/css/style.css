@@ -127,10 +127,14 @@ select {
     text-overflow: ellipsis;
 }
 
-.detail {
+.hidden {
     display: none;
 }
 
 .unbold {
     font-weight: normal;
+}
+
+.special {
+    text-align: right;
 }

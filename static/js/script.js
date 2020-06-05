@@ -33,23 +33,28 @@ form.addEventListener("submit", (e) => {
                     itemNumber += 1;
                 }
 
-                const cards = document.getElementsByClassName("card");
+                const cardArray = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
-                let displayDetails = () => {
-                    var details = document.getElementsByClassName("detail");
-                    for (let i in details) {
-                        if (details[i].tagName == "SPAN") {
-                            details[i].style.display = "inline";
-                        } else {
-                            details[i].style.display = "block";
-                        }
-                    };
-                };
+                cardArray.forEach((card) => {
+                    card.addEventListener('click', () => {
+                        let details = Array.prototype.slice.call(card.getElementsByClassName("hidden"));
+                        let counter = 9;
+                        for (let  i in details) {
+                            console.log(details[i]);
+                            console.log(counter);
+                            if (details[i].tagName == "SPAN") {
+                                details[i].style.display = "inline";
+                            } else {
+                                details[i].style.display = "block";
+                            };
+                        };
+
+                        // 
+
+
+                    });
+                });
                 
-                for (let i in cards) {
-                    cards[i].addEventListener("click", displayDetails, false);
-                }
-
             });
         };
 
@@ -237,7 +242,7 @@ function createItemCard(item, itemNumber) {
 
     // Create the returns field (Starts Hidden)
     let returns = document.createElement("p");
-    returns.setAttribute("class", "detail");
+    returns.setAttribute("class", "hidden");
     
     if (item.returnsAccepted == "true") {
         returns.innerHTML = "Seller <span class='bold'>accepts</span> returns";
@@ -249,7 +254,7 @@ function createItemCard(item, itemNumber) {
 
     // Create the shipping details (Starts Hidden)
     let shippingDetails = document.createElement("p");
-    shippingDetails.setAttribute("class", "detail");
+    shippingDetails.setAttribute("class", "hidden");
 
     if (item.freeShipping == "true") {
         shippingDetails.innerHTML = "Free Shipping";
@@ -273,7 +278,7 @@ function createItemCard(item, itemNumber) {
     };
 
     // Add the location (Starts Hidden)
-    price.innerHTML += " <span class='italic detail unbold inline'>" + item.shipLocation + "</span>";
+    price.innerHTML += " <span class='italic hidden unbold inline'>" + item.shipLocation + "</span>";
 
     contentDiv.appendChild(price);
 
