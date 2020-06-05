@@ -48,10 +48,10 @@ form.addEventListener("submit", (e) => {
 
                     // Create Event Listener for the Close Buttons
                     cardArray.forEach((card) => {
-                        document.getElementById(card.id + "_close_button").addEventListener('click', () => {
+                        document.getElementById(card.id + "_close_button").addEventListener('click', (e) => {
+                            e.stopPropagation();
                             let details = Array.prototype.slice.call(card.getElementsByClassName("extra_detail"));
                             for (let  i in details) {
-                                console.log(details[i].classList);
                                 details[i].classList.add('hidden');
                             };
                         });
