@@ -103,6 +103,8 @@ select {
 
 .redirect_icon {
     vertical-align: top;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
 }
 
 .item_image {
@@ -151,6 +153,14 @@ select {
     align-content: right;
     -webkit-text-stroke: 1px black;
     cursor: pointer;
+}
+
+.close_button.active.focus, but.close_buttonton.active:focus,
+.close_button.focus, .close_button:active.focus, 
+.close_button:active:focus, .close_button:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: #F4F3F4;
 }
 
 #show_button_area {
