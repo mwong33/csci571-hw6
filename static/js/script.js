@@ -78,6 +78,7 @@ form.addEventListener("submit", (e) => {
                             let extraCardArray = Array.prototype.slice.call(document.querySelectorAll('.extra_card'));
                             
                             if (showButton.innerHTML == "Show More") {
+                                // Show the extra cards
                                 for (let i in extraCardArray) {
                                     extraCardArray[i].classList.remove('hidden');
                                 }
@@ -88,9 +89,18 @@ form.addEventListener("submit", (e) => {
                                 // Change the Button to display "Show Less"
                                 showButton.innerHTML = "Show Less";
                             } else {
+                                // Hide the extracards
                                 for (let i in extraCardArray) {
                                     extraCardArray[i].classList.add('hidden');
                                 }
+
+                                // Collapse all cards
+                                for (let i in cardArray) {
+                                    let details = Array.prototype.slice.call(cardArray[i].getElementsByClassName("extra_detail"));
+                                    for (let  j in details) {
+                                        details[j].classList.add('hidden');
+                                    };
+                                };
                                 
                                 // Scroll to the top of the page
                                 window.scrollTo(0, 0);
