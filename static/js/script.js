@@ -29,7 +29,7 @@ form.addEventListener("submit", (e) => {
                     cardHolder.setAttribute("id", "card_holder");
 
                     for (let item in itemsJSON) {
-                        if (itemNumber < 3) {
+                        if (itemNumber < 3 && itemNumber < Object.keys(itemsJSON).length - 1) {
                             createItemCard(cardHolder, itemsJSON[item], itemNumber, false);
                         } else if (itemNumber >= 3 && itemNumber < Object.keys(itemsJSON).length - 1) {
                             createItemCard(cardHolder, itemsJSON[item], itemNumber, true);
@@ -64,37 +64,39 @@ form.addEventListener("submit", (e) => {
                         });
                     });
 
-                    // Create the 'Show More/Show Less' Button and its div container
-                    let showButtonDiv = document.createElement("div");
-                    showButtonDiv.setAttribute("id", "show_button_area");
+                    // Create the 'Show More/Show Less' Button and its div container only if itemsJSON has 4 or more items
+                    if (Object.keys(itemsJSON).length > 4) {
+                        let showButtonDiv = document.createElement("div");
+                        showButtonDiv.setAttribute("id", "show_button_area");
 
-                    let showButton = document.createElement("button");
-                    showButton.setAttribute("class", "grey_button green_hover");
-                    showButton.setAttribute("id", "show_button");
-                    showButton.innerHTML = "Show More";
+                        let showButton = document.createElement("button");
+                        showButton.setAttribute("class", "grey_button green_hover");
+                        showButton.setAttribute("id", "show_button");
+                        showButton.innerHTML = "Show More";
 
-                    showButton.addEventListener("click", () => {
-                        let extraCardArray = Array.prototype.slice.call(document.querySelectorAll('.extra_card'));
-                        
-                        if (showButton.innerHTML == "Show More") {
-                            for (let i in extraCardArray) {
-                                extraCardArray[i].classList.remove('hidden');
+                        showButton.addEventListener("click", () => {
+                            let extraCardArray = Array.prototype.slice.call(document.querySelectorAll('.extra_card'));
+                            
+                            if (showButton.innerHTML == "Show More") {
+                                for (let i in extraCardArray) {
+                                    extraCardArray[i].classList.remove('hidden');
+                                }
+
+                                // Change the Button to display "Show Less"
+                                showButton.innerHTML = "Show Less";
+                            } else {
+                                for (let i in extraCardArray) {
+                                    extraCardArray[i].classList.add('hidden');
+                                }
+
+                                // Change the Button to display "Show More"
+                                showButton.innerHTML = "Show More";
                             }
 
-                            // Change the Button to display "Show Less"
-                            showButton.innerHTML = "Show Less";
-                        } else {
-                            for (let i in extraCardArray) {
-                                extraCardArray[i].classList.add('hidden');
-                            }
-
-                            // Change the Button to display "Show More"
-                            showButton.innerHTML = "Show More";
-                        }
-
-                    });
-                    showButtonDiv.appendChild(showButton);
-                    document.body.appendChild(showButtonDiv);
+                        });
+                        showButtonDiv.appendChild(showButton);
+                        document.body.appendChild(showButtonDiv);
+                    };
                 };
             });
         };
