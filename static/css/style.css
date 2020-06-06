@@ -149,14 +149,6 @@ select {
     -webkit-text-stroke: 1px black;
 }
 
-.close_button.active.focus, .close_button.active:focus,
-.close_button.focus, .close_button:active.focus, 
-.close_button:active:focus, .close_button:focus {
-  outline: none;
-  box-shadow: none;
-  background-color: #F4F3F4;
-}
-
 #show_button_area {
     text-align: center;
 }

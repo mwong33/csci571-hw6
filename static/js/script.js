@@ -81,6 +81,9 @@ form.addEventListener("submit", (e) => {
                                 for (let i in extraCardArray) {
                                     extraCardArray[i].classList.remove('hidden');
                                 }
+                                
+                                // Scroll to the bottom of the page
+                                document.getElementById('show_button').scrollIntoView();
 
                                 // Change the Button to display "Show Less"
                                 showButton.innerHTML = "Show Less";
@@ -88,6 +91,9 @@ form.addEventListener("submit", (e) => {
                                 for (let i in extraCardArray) {
                                     extraCardArray[i].classList.add('hidden');
                                 }
+                                
+                                // Scroll to the top of the page
+                                window.scrollTo(0, 0);
 
                                 // Change the Button to display "Show More"
                                 showButton.innerHTML = "Show More";
