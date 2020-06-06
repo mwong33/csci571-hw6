@@ -147,3 +147,7 @@ select {
     background-color: #F4F3F4;
     align-content: right;
 }
+
+#show_button_area {
+    text-align: center;
+}

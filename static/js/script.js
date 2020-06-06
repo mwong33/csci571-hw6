@@ -27,11 +27,11 @@ form.addEventListener("submit", (e) => {
 
                     let cardHolder = document.createElement("div");
                     cardHolder.setAttribute("id", "card_holder");
-
+                    console.log(itemsJSON);
                     for (let item in itemsJSON) {
                         if (itemNumber < 3) {
                             createItemCard(cardHolder, itemsJSON[item], itemNumber, false);
-                        } else {
+                        } else if (itemNumber >= 3 && itemNumber < Object.keys(itemsJSON).length - 1) {
                             createItemCard(cardHolder, itemsJSON[item], itemNumber, true);
                         }
 
@@ -64,11 +64,28 @@ form.addEventListener("submit", (e) => {
                         });
                     });
 
+                    // Create the 'Show More/Show Less' Button and its div container
+                    let showButtonDiv = document.createElement("div");
+                    showButtonDiv.setAttribute("id", "show_button_area");
+
+                    let showButton = document.createElement("button");
+                    showButton.setAttribute("class", "grey_button green_hover");
+                    showButton.setAttribute("id", "show_button");
+                    showButton.innerHTML = "Show More";
+
+                    showButton.addEventListener("click", () => {
+                        let extraCardArray = Array.prototype.slice.call(document.querySelectorAll('.extra_card'));
+                        for (let i in extraCardArray) {
+                            extraCardArray[i].classList.remove('hidden');
+                        }
+                    });
+                    showButtonDiv.appendChild(showButton);
+                    document.body.appendChild(showButtonDiv);
                 };
             });
         };
 
-        // Before we get our items, check to clear out any initial search results (result_count, result_count_empty, and card_holder)
+        // Before we get our items, check to clear out any initial search results (result_count, result_count_empty, and card_holder) plus show button
         if (document.getElementById("result_count_empty") != null) {
             document.body.removeChild(document.getElementById("result_count_empty"));
         }
@@ -79,6 +96,10 @@ form.addEventListener("submit", (e) => {
 
         if (document.getElementById("card_holder") != null) {
             document.body.removeChild(document.getElementById("card_holder"));
+        }
+
+        if (document.getElementById("show_button_area") != null) {
+            document.body.removeChild(document.getElementById("show_button_area"));
         }
 
         items();
@@ -99,6 +120,10 @@ clear.addEventListener("click", () => {
 
     if (document.getElementById("card_holder") != null) {
         document.body.removeChild(document.getElementById("card_holder"));
+    }
+
+    if (document.getElementById("show_button_area") != null) {
+        document.body.removeChild(document.getElementById("show_button_area"));
     }
 
 })
@@ -213,7 +238,7 @@ function createItemCard(cardHolder, item, itemNumber, hidden_card) {
 
     // Hide the card initially if hidden_card is true
     if (hidden_card) {
-        cardDiv.setAttribute("class", "card hidden");
+        cardDiv.setAttribute("class", "card extra_card hidden");
     } else {
         cardDiv.setAttribute("class", "card");
     }
