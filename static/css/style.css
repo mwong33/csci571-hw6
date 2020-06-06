@@ -147,6 +147,7 @@ select {
     background-color: #F4F3F4;
     align-content: right;
     -webkit-text-stroke: 1px black;
+    cursor: pointer;
 }
 
 #show_button_area {
