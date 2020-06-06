@@ -122,6 +122,9 @@ select {
 
 .content_div {
     width: 400px;
+}
+
+.truncate {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -50,6 +50,10 @@ form.addEventListener("submit", (e) => {
                             for (let  i in details) {
                                 details[i].classList.remove('hidden');
                             };
+
+                            let cardContentArray = Array.prototype.slice.call(card.getElementsByClassName("content_div"));
+
+                            cardContentArray[0].classList.remove("truncate");
                         });
                     });
 
@@ -61,6 +65,9 @@ form.addEventListener("submit", (e) => {
                             for (let  i in details) {
                                 details[i].classList.add('hidden');
                             };
+
+                            let cardContentArray = Array.prototype.slice.call(card.getElementsByClassName("content_div"));
+                            cardContentArray[0].classList.add("truncate");
                         });
                     });
 
@@ -101,6 +108,12 @@ form.addEventListener("submit", (e) => {
                                         details[j].classList.add('hidden');
                                     };
                                 };
+
+                                // Remove ellipsis from title
+                                for (let i in cardArray) {
+                                    let cardContentArray = Array.prototype.slice.call(cardArray[i].getElementsByClassName("content_div"));
+                                    cardContentArray[0].classList.add("truncate");
+                                }
                                 
                                 // Scroll to the top of the page
                                 window.scrollTo(0, 0);
@@ -278,7 +291,7 @@ function createItemCard(cardHolder, item, itemNumber, hidden_card) {
     let imageDiv = document.createElement("div");
     imageDiv.setAttribute("class", "image_div");
     let contentDiv = document.createElement("div");
-    contentDiv.setAttribute("class", "content_div");
+    contentDiv.setAttribute("class", "content_div truncate");
 
     cardDiv.appendChild(imageDiv);
     cardDiv.appendChild(contentDiv);
@@ -315,7 +328,7 @@ function createItemCard(cardHolder, item, itemNumber, hidden_card) {
     let titleLink = document.createElement("a");
     titleLink.setAttribute("href", item.viewItemURL);
     titleLink.setAttribute("target", "_blank");
-    titleLink.setAttribute("class", "bold truncate");
+    titleLink.setAttribute("class", "bold");
     titleLink.innerHTML = item.title;
 
     contentDiv.appendChild(titleLink);
