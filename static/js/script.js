@@ -27,7 +27,7 @@ form.addEventListener("submit", (e) => {
 
                     let cardHolder = document.createElement("div");
                     cardHolder.setAttribute("id", "card_holder");
-                    console.log(itemsJSON);
+
                     for (let item in itemsJSON) {
                         if (itemNumber < 3) {
                             createItemCard(cardHolder, itemsJSON[item], itemNumber, false);
@@ -75,9 +75,23 @@ form.addEventListener("submit", (e) => {
 
                     showButton.addEventListener("click", () => {
                         let extraCardArray = Array.prototype.slice.call(document.querySelectorAll('.extra_card'));
-                        for (let i in extraCardArray) {
-                            extraCardArray[i].classList.remove('hidden');
+                        
+                        if (showButton.innerHTML == "Show More") {
+                            for (let i in extraCardArray) {
+                                extraCardArray[i].classList.remove('hidden');
+                            }
+
+                            // Change the Button to display "Show Less"
+                            showButton.innerHTML = "Show Less";
+                        } else {
+                            for (let i in extraCardArray) {
+                                extraCardArray[i].classList.add('hidden');
+                            }
+
+                            // Change the Button to display "Show More"
+                            showButton.innerHTML = "Show More";
                         }
+
                     });
                     showButtonDiv.appendChild(showButton);
                     document.body.appendChild(showButtonDiv);
