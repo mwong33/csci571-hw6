@@ -15,6 +15,10 @@ form {
     text-align: center;
 }
 
+input[type=number]{
+    width: 50px;
+} 
+
 .bold {
     font-weight: bold;
 }
