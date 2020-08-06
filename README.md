@@ -18,7 +18,7 @@ Part 3: https://github.com/mwong33/csci571-hw9
 5. Deploying an app to Google Cloud Platform with Google App Engine
 
 # Instructions
-To run locally
+To run locally:
 
 1. Make sure have python installed on your computer
 2. Chance your directory to the repository
@@ -26,4 +26,4 @@ To run locally
 4. Run the Python Flask server `python main.py`
 5. Go to `http://localhost:5000/B15OWJ0eg1Pq.html` to view the webpage on your browser
 
-To view the deployed version on GCP visit https://mjwong-csci-571-hw6.wl.r.appspot.com/B15OWJ0eg1Pq.html
+To view the deployed version on GCP visit: https://mjwong-csci-571-hw6.wl.r.appspot.com/B15OWJ0eg1Pq.html
