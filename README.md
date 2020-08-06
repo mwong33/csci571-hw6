@@ -1,5 +1,5 @@
 # csci571-hw6
-This is a single page web application with a simple user interface that searches items on Ebay.
+This is a single page web application with a simple user interface that searches items on Ebay written with Python Flask.
 
 # Objective
 This is Part 1 of a series of projects I did to learn more about Ebay's public API: https://developer.ebay.com/DevZone/finding/CallRef/findItemsAdvanced.html
