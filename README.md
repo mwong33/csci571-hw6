@@ -21,7 +21,7 @@ Part 3: https://github.com/mwong33/csci571-hw9
 To run locally:
 
 1. Make sure have python installed on your computer
-2. Chance your directory to the repository
+2. Change your directory to the repository
 3. Install the depenendcies `pip install -r requirements.txt`
 4. Run the Python Flask server `python main.py`
 5. Go to `http://localhost:5000/B15OWJ0eg1Pq.html` to view the webpage on your browser
