@@ -26,4 +26,4 @@ To run locally
 4. Run the Python Flask server `python main.py`
 5. Go to `http://localhost:5000/B15OWJ0eg1Pq.html` to view the webpage on your browser
 
-To view the deployed version on GCP visit https://mjwong-csci-571-hw6.wl.r.appspot.com
+To view the deployed version on GCP visit https://mjwong-csci-571-hw6.wl.r.appspot.com/B15OWJ0eg1Pq.html
