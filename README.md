@@ -1,4 +1,4 @@
-# csci571-hw6
+# ebay-list-python-flask
 This is a single page web application with a simple user interface that searches items on Ebay using Python Flask
 
 # Objective
